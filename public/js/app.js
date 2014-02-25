@@ -1,12 +1,19 @@
-require(['phaser'], function(Phaser) {
-  var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {preload: preload, create: create});
+require(
+[
+'phaser'
+,'boot'
+,'load'
+,'menu'
+,'play'
+]
 
-  function preload() {
-    game.load.image('logo', 'assets/phaser.png');
-  }
+, function(Phaser, Boot, Load, Menu, Play) {
+  var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
 
-  function create() {
-    var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
-    logo.anchor.setTo(0.5, 0.5);
-  }
+  game.state.add('Boot', Boot);
+  game.state.add('Load', Load);
+  game.state.add('Menu', Menu);
+  game.state.add('Play', Play);
+
+  game.state.start('Boot');
 });
